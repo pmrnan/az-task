@@ -99,19 +99,32 @@
     background-color: theme("colors.beige");
   }
 
-  .task-status-not-started {
+  .task-status-badge {
+    color: theme("colors.gray.200");
+  }
+
+  .task-status-badge-not-started {
     background-color: theme("colors.red");
-    color: theme("colors.gray.200");
   }
 
-  .task-status-doing {
+  .task-status-badge-doing {
     background-color: theme("colors.orange");
-    color: theme("colors.gray.200");
   }
 
-  .task-status-done {
+  .task-status-badge-done {
     background-color: theme("colors.green");
-    color: theme("colors.gray.200");
+  }
+
+  .task-priority-icon-high {
+    color: theme("colors.red");
+  }
+
+  .task-priority-icon-middle {
+    color: theme("colors.blue");
+  }
+
+  .task-priority-icon-low {
+    color: theme("colors.blue");
   }
 
   .form-title {

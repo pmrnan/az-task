@@ -6,7 +6,7 @@ import { useAddTaskForm } from "@/hooks/useForm/useAddTaskForm";
 import { AppDateForm } from "@/components/shared/AppDateForm";
 import { AppSelectForm } from "@/components/shared/AppSelectForm";
 import { AppTextForm } from "@/components/shared/AppTextForm";
-import { PRIORITY } from "@/constansts/task";
+import { PRIORITY_OPTION } from "@/constansts/task";
 
 export const AddTaskForm = () => {
   // フォーム定義呼び出し
@@ -19,7 +19,7 @@ export const AddTaskForm = () => {
           <div className="grid grid-cols-[2fr_1fr_1fr] gap-4">
             <AppTextForm name="task_name" title="タスク名" form={form} />
             <AppDateForm name="limit_date" title="期日" form={form} />
-            <AppSelectForm name="priority" title="優先度" form={form} options={PRIORITY} />
+            <AppSelectForm name="priority" title="優先度" form={form} options={PRIORITY_OPTION} />
           </div>
           <div className="ml-auto">
             <Button type="submit" className="submit-button">

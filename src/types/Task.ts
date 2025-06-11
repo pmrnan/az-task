@@ -1,19 +1,32 @@
-export type Status = {
-    notStarted: {
-        name: string,
-        class: string
-    },
-    doing: {
-        name: string,
-        class: string
-    },
-    done: {
-        name: string,
-        class: string
-    },
+import { Priority, Status } from "@/generated/prisma/index.js";
+
+export type Task = {
+    id: number,
+    userId: number,
+    title: string,
+    status: Status,
+    limitDate: Date | null,
+    priority: Priority | null
 }
 
-export type Option = {
-  label: string;
-  value: string;
-};
+export type StatusBudges = {
+    notStarted: BudgeOption,
+    doing: BudgeOption,
+    done: BudgeOption,
+}
+
+export type BudgeOption = {
+    name: string,
+    class: string
+}
+
+export type PriorityIcons = {
+    high: IconOption,
+    middle: IconOption,
+    low: IconOption,
+    none: IconOption,
+}
+
+export type IconOption = {
+    class: string
+}

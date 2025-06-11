@@ -1,5 +1,10 @@
 import type { Config } from "tailwindcss";
 
+const {
+  iconsPlugin,
+  getIconCollections,
+} = require("@egoist/tailwindcss-icons");
+
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -10,6 +15,7 @@ const config: Config = {
       orange: "#F6B400",
       green: "#AACE39",
       beige: "#FBEFE1",
+      blue: "#1E90FF",
       // グレースケールの詳細設定
       gray: {
         900: "#000000",
@@ -43,7 +49,11 @@ const config: Config = {
       "6xl": ["3.5rem", { lineHeight: "1", letterSpacing: "0.03em" }],
     },
   },
-  plugins: [],
+  plugins: [
+    iconsPlugin({
+      collections: getIconCollections(["tabler"]),
+    }),
+  ],
 };
 
 export default config;

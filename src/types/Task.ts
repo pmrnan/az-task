@@ -1,5 +1,5 @@
 export type Status = {
-    notStartetd: {
+    notStarted: {
         name: string,
         class: string
     },

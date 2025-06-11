@@ -1,7 +1,7 @@
 import { Option, Status } from "@/types/Task";
 
 export const STATUS: Status = {
-    notStartetd: {
+    notStarted: {
         name: '未着手',
         class: 'task-status-not-started'
     },

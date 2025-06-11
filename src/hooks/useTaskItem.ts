@@ -3,8 +3,8 @@ import { Priority } from "@/generated/prisma/index.js";
 import { PRIORITY_HIGH, PRIORITY_MIDDLE, PRIORITY_LOW, PRIORITY_ICONS } from '@/constansts/task'
 
 export const useTaskItem = () => {
-    // 優先度バッジ定義取得
-    const getPriorityBadgeConst = (priority: Priority): IconOption => {
+    // 優先度アイコン定義取得
+    const getPriorityIconConst = (priority: Priority): IconOption => {
         switch (priority) {
             case PRIORITY_HIGH:
                 return PRIORITY_ICONS.high
@@ -18,6 +18,6 @@ export const useTaskItem = () => {
     }
 
     return {
-        getPriorityBadgeConst
+        getPriorityIconConst
     };
 };

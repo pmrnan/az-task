@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const TaskItem = ({ ...props }: Props) => {
-  const { getPriorityBadgeConst } = useTaskItem();
+  const { getPriorityIconConst } = useTaskItem();
 
   return (
     <div
@@ -25,7 +25,7 @@ export const TaskItem = ({ ...props }: Props) => {
             <label>優先度:</label>
             {props.priority ? (
               <span
-                className={getPriorityBadgeConst(props.priority).class}
+                className={getPriorityIconConst(props.priority).class}
               ></span>
             ) : (
               <>-</>

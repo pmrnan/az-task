@@ -12,13 +12,20 @@ export const connect = async () => {
     }
 }
 
-// タスク一覧取得
-export const GET = async (req: Request) => {
+// タスク更新
+export const PATCH = async (req: Request, {params}: {params: {id: string}}) => {
     try {
         await connect();
-        const tasks = await prisma.task.findMany();
-	
-        return NextResponse.json({ tasks }, { status: 200 })
+        const body = await req.json();
+        const id = Number(params.id)
+
+        const updateTask = await prisma.task.update({
+            where: {id},
+            data: { 
+                status: body.status
+            },
+        })
+        return NextResponse.json(updateTask)
     } catch (error) {
         return NextResponse.json({ messeage: "Error" }, { status: 500 })
     } finally {

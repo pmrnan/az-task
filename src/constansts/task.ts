@@ -9,14 +9,17 @@ export const STATUS_DONE = 'DONE';
 // ステータスバッジ
 export const STATUS_BUDGES: StatusBudges = {
     notStarted: {
+        key: STATUS_NOT_STARTED,
         name: '未着手',
         class: 'task-status-badge-not-started'
     },
     doing: {
+        key: STATUS_DOING,
         name: '着手中',
         class: 'task-status-badge-doing'
     },
     done: {
+        key: STATUS_DONE,
         name: '完了',
         class: 'task-status-badge-done'
     },

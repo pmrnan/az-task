@@ -16,6 +16,7 @@ export type StatusBudges = {
 }
 
 export type BudgeOption = {
+    key: string,
     name: string,
     class: string
 }

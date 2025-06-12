@@ -1,13 +1,11 @@
 import { format } from "date-fns";
-import { Priority, Status } from "@/generated/prisma/index.js";
 import { useTaskItem } from "@/hooks/useTaskItem";
+import { Task } from "@/types/Task";
 
 type Props = {
-  taskId: number;
-  title: string;
-  status: Status;
-  limitDate: Date | null;
-  priority: Priority | null;
+  task: Task;
+  fromStatus: string;
+  onDragStart: (task: Task, fromStatus: string) => void;
 };
 
 export const TaskItem = ({ ...props }: Props) => {
@@ -15,17 +13,19 @@ export const TaskItem = ({ ...props }: Props) => {
 
   return (
     <div
-      key={props.taskId}
+      key={props.task.id}
+      draggable={true}
+      onDragStart={() => props.onDragStart(props.task, props.fromStatus)}
       className="block max-w-sm px-4 py-2 mb-2 bg-gray-100 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600"
     >
       <div className="grid grid-rows-2 gap-2 items-center">
-        <h1>{props.title}</h1>
+        <h1>{props.task.title}</h1>
         <div className="grid grid-cols-2 items-center text-xs">
           <div className="flex gap-3 items-center">
             <label>優先度:</label>
-            {props.priority ? (
+            {props.task.priority ? (
               <span
-                className={getPriorityIconConst(props.priority).class}
+                className={getPriorityIconConst(props.task.priority).class}
               ></span>
             ) : (
               <>-</>
@@ -33,8 +33,8 @@ export const TaskItem = ({ ...props }: Props) => {
           </div>
           <div className="flex gap-3 items-center">
             <label>期日:</label>
-            {props.limitDate ? (
-              <span>{format(props.limitDate, "yyyy/MM/dd")}</span>
+            {props.task.limitDate ? (
+              <span>{format(props.task.limitDate, "yyyy/MM/dd")}</span>
             ) : (
               <>-</>
             )}

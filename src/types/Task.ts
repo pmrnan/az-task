@@ -9,16 +9,16 @@ export type Task = {
     priority: Priority | null
 }
 
-export type StatusBudges = {
-    notStarted: BudgeOption,
-    doing: BudgeOption,
-    done: BudgeOption,
+export type FieldsStatus = {
+    notStarted: FieldStatusOption,
+    doing: FieldStatusOption,
+    done: FieldStatusOption,
 }
 
-export type BudgeOption = {
+export type FieldStatusOption = {
     key: string,
-    name: string,
-    class: string
+    statusName: string,
+    badgeClass: string
 }
 
 export type PriorityIcons = {

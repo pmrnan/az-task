@@ -1,27 +1,27 @@
 import { Option } from "@/types/Form";
-import { PriorityIcons, StatusBudges } from "@/types/Task";
+import { PriorityIcons, FieldsStatus } from "@/types/Task";
 
 // ステータス(Prismaのenumと統一)
 export const STATUS_NOT_STARTED = 'NOT_STARTED';
 export const STATUS_DOING = 'DOING';
 export const STATUS_DONE = 'DONE';
 
-// ステータスバッジ
-export const STATUS_BUDGES: StatusBudges = {
+// タスクフィールドのステータス
+export const FIELDS_STATUS: FieldsStatus = {
     notStarted: {
         key: STATUS_NOT_STARTED,
-        name: '未着手',
-        class: 'task-status-badge-not-started'
+        statusName: '未着手',
+        badgeClass: 'task-status-badge-not-started'
     },
     doing: {
         key: STATUS_DOING,
-        name: '着手中',
-        class: 'task-status-badge-doing'
+        statusName: '着手中',
+        badgeClass: 'task-status-badge-doing'
     },
     done: {
         key: STATUS_DONE,
-        name: '完了',
-        class: 'task-status-badge-done'
+        statusName: '完了',
+        badgeClass: 'task-status-badge-done'
     },
 }
 

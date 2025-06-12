@@ -1,10 +1,10 @@
 import { DragEvent } from "react";
 import { StatusBadge } from "@/components/top/TaskFieldList/TaskField/StatusBadge";
 import { TaskItem } from "@/components/top/TaskFieldList/TaskField/TaskItem";
-import { BudgeOption, Task } from "@/types/Task";
+import { FieldStatusOption, Task } from "@/types/Task";
 
 type Props = {
-  statusBudgeOption: BudgeOption;
+  fieldStatusOption: FieldStatusOption;
   tasks?: Task[];
   onDragStart: (task: Task, fromStatus: string) => void;
   onDrop: (toStatus: string) => void;
@@ -14,17 +14,20 @@ type Props = {
 export const TaskField = ({ ...props }: Props) => {
   return (
     <div
-      onDrop={() => props.onDrop(props.statusBudgeOption.key)}
+      onDrop={() => props.onDrop(props.fieldStatusOption.key)}
       onDragOver={props.allowDrop}
       className="block w-90 h-140 p-4 task-container border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
     >
-      <StatusBadge statusBudgeOption={props.statusBudgeOption} />
+      <StatusBadge
+        statusName={props.fieldStatusOption.statusName}
+        class={props.fieldStatusOption.badgeClass}
+      />
       {props.tasks &&
         props.tasks.map((task) => {
           return (
             <TaskItem
               task={task}
-              fromStatus={props.statusBudgeOption.key}
+              fromStatus={props.fieldStatusOption.key}
               onDragStart={props.onDragStart}
             />
           );

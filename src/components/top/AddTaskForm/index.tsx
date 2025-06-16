@@ -14,20 +14,20 @@ export const AddTaskForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={onSubmit} className="space-y-8">
         <div className="my-4 mx-16 grid grid-cols-[15fr_1fr] items-center ">
           <div className="grid grid-cols-[2fr_1fr_1fr] gap-4">
-            <AppTextForm name="task_name" title="タスク名" form={form} />
+            <AppTextForm name="title" title="タスク名" form={form} />
             <AppSelectForm
               name="priority"
               title="優先度"
               form={form}
               options={PRIORITY_OPTION}
             />
-            <AppDateForm name="limit_date" title="期日" form={form} />
+            <AppDateForm name="limitDate" title="期日" form={form} />
           </div>
           <div className="ml-auto">
-            <Button type="submit" className="submit-button">
+            <Button type="submit" className="cursor-pointer submit-button">
               追加
             </Button>
           </div>

@@ -1,6 +1,18 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Option } from "@/types/Task";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Option } from "@/types/Form";
 import { UseFormReturn } from "react-hook-form";
 
 type Props = {
@@ -11,7 +23,10 @@ type Props = {
   placeholder?: string;
 };
 
-export const AppSelectForm = ({ placeholder = "選択してください", ...props }: Props) => {
+export const AppSelectForm = ({
+  placeholder = "選択してください",
+  ...props
+}: Props) => {
   return (
     <>
       <FormField
@@ -19,10 +34,17 @@ export const AppSelectForm = ({ placeholder = "選択してください", ...pro
         name={props.name}
         render={({ field }) => (
           <FormItem className="gap-1">
-            {props.title && <FormLabel className="form-title">{props.title}</FormLabel>}
+            {props.title && (
+              <FormLabel className="form-title">{props.title}</FormLabel>
+            )}
             <FormControl>
-              <Select value={field.value} onValueChange={(val) => field.onChange(val === "none" ? undefined : val)}>
-                <SelectTrigger className="w-[100%]">
+              <Select
+                value={field.value ?? "none"}
+                onValueChange={(val) =>
+                  field.onChange(val === "none" ? null : val)
+                }
+              >
+                <SelectTrigger className="w-[100%] cursor-pointer hover:bg-accent">
                   <SelectValue placeholder={placeholder} />
                 </SelectTrigger>
                 <SelectContent>

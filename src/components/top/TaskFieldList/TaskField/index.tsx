@@ -22,16 +22,18 @@ export const TaskField = ({ ...props }: Props) => {
         statusName={props.fieldStatusOption.statusName}
         class={props.fieldStatusOption.badgeClass}
       />
-      {props.tasks &&
-        props.tasks.map((task) => {
-          return (
-            <TaskItem
-              task={task}
-              fromStatus={props.fieldStatusOption.key}
-              onDragStart={props.onDragStart}
-            />
-          );
-        })}
+      <div className="h-120 overflow-y-auto">
+        {props.tasks &&
+          props.tasks.map((task) => {
+            return (
+              <TaskItem
+                task={task}
+                fromStatus={props.fieldStatusOption.key}
+                onDragStart={props.onDragStart}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 };

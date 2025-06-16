@@ -25,3 +25,24 @@ export const GET = async (req: Request) => {
         await prisma.$disconnect();
     }
 }
+
+// タスク追加
+export const POST = async (req: Request) => {
+    try {
+        await connect();
+        const {userId, title, priority, limitDate} = await req.json();
+
+        if (!title || !userId) {
+            return NextResponse.json({ message: "Invalid input" }, { status: 400 })
+        }
+
+        const createTask = await prisma.task.create({
+            data: {userId, title, priority, limitDate},
+        })
+        return NextResponse.json(createTask)
+    } catch (error) {
+        return NextResponse.json({ messeage: "Error" }, { status: 500 })
+    } finally {
+        await prisma.$disconnect();
+    }
+}

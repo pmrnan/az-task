@@ -1,4 +1,10 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { UseFormReturn } from "react-hook-form";
 
@@ -9,7 +15,10 @@ type Props = {
   placeholder?: string;
 };
 
-export const AppTextForm = ({ placeholder = "入力してください", ...props }: Props) => {
+export const AppTextForm = ({
+  placeholder = "入力してください",
+  ...props
+}: Props) => {
   return (
     <>
       <FormField
@@ -19,7 +28,11 @@ export const AppTextForm = ({ placeholder = "入力してください", ...props
           <FormItem className="gap-1">
             <FormLabel className="form-title">{props.title}</FormLabel>
             <FormControl>
-              <Input placeholder={placeholder} {...field} />
+              <Input
+                placeholder={placeholder}
+                className="hover:bg-accent"
+                {...field}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>

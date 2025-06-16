@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { DeleteWithConfirm } from "@/components/shared/DeleteWithConfirm";
 import { useTaskItem } from "@/hooks/useTaskItem";
 import { Task } from "@/types/Task";
 
@@ -9,7 +10,7 @@ type Props = {
 };
 
 export const TaskItem = ({ ...props }: Props) => {
-  const { getPriorityIconConst } = useTaskItem();
+  const { onDelete, getPriorityIconConst } = useTaskItem();
 
   return (
     <div
@@ -26,9 +27,15 @@ export const TaskItem = ({ ...props }: Props) => {
             <h1 className="border-b-1 border-b-rose-light pb-2 truncate">
               {props.task.title}
             </h1>
-            <div className="flex justify-end pr-2 cursor-pointer">
-              <span className="i-tabler-x text-xs bg-gray-600 hover:bg-gray-900"></span>
-            </div>
+            <DeleteWithConfirm
+              deleteButton={
+                <div className="flex justify-end pr-2 cursor-pointer">
+                  <span className="i-tabler-x text-xs bg-gray-600 hover:bg-gray-900"></span>
+                </div>
+              }
+              confirmMessage="タスクを削除しますか？"
+              onDelete={() => onDelete(props.task.id, props.task.status)}
+            />
           </div>
           <div className="grid grid-cols-2 items-center text-xs">
             <div className="flex gap-3 items-center">

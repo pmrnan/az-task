@@ -36,3 +36,20 @@ export const PATCH = async (req: Request, {params}: {params: {id: string}}) => {
         await prisma.$disconnect();
     }
 }
+
+// タスク削除
+export const DELETE = async (req: Request, {params}: {params: {id: string}}) => {
+    try {
+        await connect();
+        const id = Number(params.id)
+
+        const deleteTask = await prisma.task.delete({
+            where: {id},
+        })
+        return NextResponse.json(deleteTask)
+    } catch (error) {
+        return NextResponse.json({ messeage: "Error" }, { status: 500 })
+    } finally {
+        await prisma.$disconnect();
+    }
+}

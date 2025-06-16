@@ -16,6 +16,9 @@ const config: Config = {
       green: "#AACE39",
       beige: "#FBEFE1",
       blue: "#1E90FF",
+      rose: {
+        light: "#E6BFAB"
+      },
       // グレースケールの詳細設定
       gray: {
         900: "#000000",

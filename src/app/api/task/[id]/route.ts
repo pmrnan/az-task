@@ -16,13 +16,17 @@ export const connect = async () => {
 export const PATCH = async (req: Request, {params}: {params: {id: string}}) => {
     try {
         await connect();
-        const body = await req.json();
+        const { status } = await req.json();
         const id = Number(params.id)
+
+        if (!status) {
+            return NextResponse.json({ message: "Invalid input" }, { status: 400 })
+        }
 
         const updateTask = await prisma.task.update({
             where: {id},
             data: { 
-                status: body.status
+                status: status
             },
         })
         return NextResponse.json(updateTask)

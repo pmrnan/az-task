@@ -19,18 +19,26 @@ type Props = {
 export function DeleteWithConfirm({ ...props }: Props) {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>{props.deleteButton}</AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogTrigger asChild>
+        <div onClick={(e) => e.stopPropagation()}>{props.deleteButton}</div>
+      </AlertDialogTrigger>
+      <AlertDialogContent onClick={(e) => e.stopPropagation()}>
         <AlertDialogHeader>
           <AlertDialogTitle>{props.confirmMessage}</AlertDialogTitle>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="cursor-pointer">
+          <AlertDialogCancel
+            className="cursor-pointer"
+            onClick={(e) => e.stopPropagation()}
+          >
             キャンセル
           </AlertDialogCancel>
           <AlertDialogAction
             className="submit-button cursor-pointer"
-            onClick={props.onDelete}
+            onClick={(e) => {
+              e.stopPropagation();
+              props.onDelete();
+            }}
           >
             削除する
           </AlertDialogAction>

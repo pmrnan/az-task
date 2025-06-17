@@ -22,10 +22,12 @@ type Props = {
   title: string;
   form: UseFormReturn<any>;
   placeholder?: string;
+  isRequired?: boolean;
 };
 
 export const AppDateForm = ({
   placeholder = "日付を選択してください",
+  isRequired = false,
   ...props
 }: Props) => {
   return (
@@ -36,9 +38,10 @@ export const AppDateForm = ({
         render={({ field }) => (
           <>
             <FormItem className="gap-1">
-              {props.title && (
-                <FormLabel className="form-title">{props.title}</FormLabel>
-              )}
+              <FormLabel className="form-title">
+                {props.title}
+                {isRequired && <span className="text-red">*</span>}
+              </FormLabel>
               <FormControl>
                 <Popover>
                   <PopoverTrigger asChild>

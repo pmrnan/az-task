@@ -21,10 +21,12 @@ type Props = {
   form: UseFormReturn<any>;
   options: Option[];
   placeholder?: string;
+  isRequired?: boolean;
 };
 
 export const AppSelectForm = ({
   placeholder = "選択してください",
+  isRequired = false,
   ...props
 }: Props) => {
   return (
@@ -34,9 +36,10 @@ export const AppSelectForm = ({
         name={props.name}
         render={({ field }) => (
           <FormItem className="gap-1">
-            {props.title && (
-              <FormLabel className="form-title">{props.title}</FormLabel>
-            )}
+            <FormLabel className="form-title">
+              {props.title}
+              {isRequired && <span className="text-red">*</span>}
+            </FormLabel>
             <FormControl>
               <Select
                 value={field.value ?? "none"}

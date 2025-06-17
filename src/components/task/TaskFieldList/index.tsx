@@ -1,5 +1,5 @@
 import { FIELDS_STATUS } from "@/constansts/task";
-import { TaskField } from "@/components/top/TaskFieldList/TaskField";
+import { TaskField } from "@/components/task/TaskFieldList/TaskField";
 import { useTaskFieldList } from "@/hooks/useTaskFieldList";
 
 export const TaskFieldList = () => {

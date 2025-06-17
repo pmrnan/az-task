@@ -1,6 +1,6 @@
 import { DragEvent } from "react";
-import { StatusBadge } from "@/components/top/TaskFieldList/TaskField/StatusBadge";
-import { TaskItem } from "@/components/top/TaskFieldList/TaskField/TaskItem";
+import { StatusBadge } from "@/components/task/TaskFieldList/TaskField/StatusBadge";
+import { TaskItem } from "@/components/task/TaskFieldList/TaskField/TaskItem";
 import { FieldStatusOption, Task } from "@/types/Task";
 
 type Props = {

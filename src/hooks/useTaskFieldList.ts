@@ -140,6 +140,7 @@ export const useTaskFieldList = () => {
         notStartedTasks: state.notStartedTasks,
         doingTasks: state.doingTasks,
         doneTasks: state.doneTasks,
+        isLoading: state.isLoading,
         onDragStart,
         onDrop,
         allowDrop

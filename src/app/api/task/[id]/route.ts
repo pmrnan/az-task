@@ -1,26 +1,19 @@
 import { PrismaClient } from "@/generated/prisma/index.js";
 import { NextResponse } from 'next/server'
+import { connect } from '@/lib/api/connect'
+import { errorResponse } from '@/lib/api/error'
 
 const prisma = new PrismaClient();
-
-export const connect = async () => {
-    try {
-        // Prismaでデータベースに接続
-        prisma.$connect();
-    } catch (error) {
-        return Error("DB接続失敗しました")
-    }
-}
 
 // タスク更新
 export const PATCH = async (req: Request, {params}: {params: {id: string}}) => {
     try {
-        await connect();
+        await connect(prisma);
         const { status } = await req.json();
         const id = Number(params.id)
 
         if (!status) {
-            return NextResponse.json({ message: "Invalid input" }, { status: 400 })
+            return errorResponse(400)
         }
 
         const updateTask = await prisma.task.update({
@@ -31,7 +24,7 @@ export const PATCH = async (req: Request, {params}: {params: {id: string}}) => {
         })
         return NextResponse.json(updateTask)
     } catch (error) {
-        return NextResponse.json({ messeage: "Error" }, { status: 500 })
+        return errorResponse(500)
     } finally {
         await prisma.$disconnect();
     }
@@ -40,7 +33,7 @@ export const PATCH = async (req: Request, {params}: {params: {id: string}}) => {
 // タスク削除
 export const DELETE = async (req: Request, {params}: {params: {id: string}}) => {
     try {
-        await connect();
+        await connect(prisma);
         const id = Number(params.id)
 
         const deleteTask = await prisma.task.delete({
@@ -48,7 +41,7 @@ export const DELETE = async (req: Request, {params}: {params: {id: string}}) => 
         })
         return NextResponse.json(deleteTask)
     } catch (error) {
-        return NextResponse.json({ messeage: "Error" }, { status: 500 })
+        return errorResponse(500)
     } finally {
         await prisma.$disconnect();
     }

@@ -1,26 +1,19 @@
 import { PrismaClient } from "@/generated/prisma/index.js";
 import { NextResponse } from 'next/server'
+import { connect } from '@/lib/api/connect'
+import { errorResponse } from '@/lib/api/error'
 
 const prisma = new PrismaClient();
-
-export const connect = async () => {
-    try {
-        // Prismaでデータベースに接続
-        prisma.$connect();
-    } catch (error) {
-        return Error("DB接続失敗しました")
-    }
-}
 
 // タスク一覧取得
 export const GET = async (req: Request) => {
     try {
-        await connect();
+        await connect(prisma);
         const tasks = await prisma.task.findMany();
 	
         return NextResponse.json({ tasks }, { status: 200 })
     } catch (error) {
-        return NextResponse.json({ messeage: "Error" }, { status: 500 })
+        return errorResponse(500)
     } finally {
         await prisma.$disconnect();
     }
@@ -29,11 +22,12 @@ export const GET = async (req: Request) => {
 // タスク追加
 export const POST = async (req: Request) => {
     try {
-        await connect();
+        await connect(prisma);
         const {userId, title, priority, limitDate} = await req.json();
 
+        // タスク名とユーザーIDは必須
         if (!title || !userId) {
-            return NextResponse.json({ message: "Invalid input" }, { status: 400 })
+            return errorResponse(400)
         }
 
         const createTask = await prisma.task.create({
@@ -41,7 +35,7 @@ export const POST = async (req: Request) => {
         })
         return NextResponse.json(createTask)
     } catch (error) {
-        return NextResponse.json({ messeage: "Error" }, { status: 500 })
+        return errorResponse(500)
     } finally {
         await prisma.$disconnect();
     }

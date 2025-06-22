@@ -10,7 +10,7 @@ export const StatusBadge = ({ ...props }: Props) => {
     <div
       className={cn(
         "flex items-center justify-center rounded-full w-20 px-2 py-1 mb-4 task-status-badge",
-        props.class
+        props.class,
       )}
     >
       <div>{props.statusName}</div>

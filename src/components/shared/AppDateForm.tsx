@@ -44,7 +44,7 @@ export const AppDateForm = ({
                 variant="outline"
                 className={cn(
                   "w-[100%] justify-start text-left font-normal cursor-pointer",
-                  !props.value && "text-muted-foreground"
+                  !props.value && "text-muted-foreground",
                 )}
               >
                 <CalendarIcon />

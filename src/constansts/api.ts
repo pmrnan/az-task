@@ -1,8 +1,8 @@
-import { HttpError } from '@/types/Api'
+import { HttpError } from "@/types/Api";
 
 export const URL = {
-    task: '/api/task'
-}
+  task: "/api/task",
+};
 
 export const HTTP_ERRORS: Record<number, HttpError> = {
   400: {

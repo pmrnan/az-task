@@ -6,7 +6,7 @@ import { errorResponse } from '@/lib/api/error'
 const prisma = new PrismaClient();
 
 // タスク更新
-export const PATCH = async (req: Request, {params}: {params: {id: string}}) => {
+export const PATCH = async (req: Request, { params }: { params: { id: string } }) => {
     try {
         await connect(prisma);
         const { status } = await req.json();
@@ -17,13 +17,14 @@ export const PATCH = async (req: Request, {params}: {params: {id: string}}) => {
         }
 
         const updateTask = await prisma.task.update({
-            where: {id},
-            data: { 
+            where: { id },
+            data: {
                 status: status
             },
         })
         return NextResponse.json(updateTask)
     } catch (error) {
+        console.error(error);
         return errorResponse(500)
     } finally {
         await prisma.$disconnect();
@@ -31,16 +32,17 @@ export const PATCH = async (req: Request, {params}: {params: {id: string}}) => {
 }
 
 // タスク削除
-export const DELETE = async (req: Request, {params}: {params: {id: string}}) => {
+export const DELETE = async (req: Request, { params }: { params: { id: string } }) => {
     try {
         await connect(prisma);
         const id = Number(params.id)
 
         const deleteTask = await prisma.task.delete({
-            where: {id},
+            where: { id },
         })
         return NextResponse.json(deleteTask)
     } catch (error) {
+        console.error(error);
         return errorResponse(500)
     } finally {
         await prisma.$disconnect();

@@ -6,13 +6,14 @@ import { errorResponse } from '@/lib/api/error'
 const prisma = new PrismaClient();
 
 // タスク一覧取得
-export const GET = async (req: Request) => {
+export const GET = async () => {
     try {
         await connect(prisma);
         const tasks = await prisma.task.findMany();
-	
+
         return NextResponse.json({ tasks }, { status: 200 })
     } catch (error) {
+        console.error(error);
         return errorResponse(500)
     } finally {
         await prisma.$disconnect();
@@ -23,7 +24,7 @@ export const GET = async (req: Request) => {
 export const POST = async (req: Request) => {
     try {
         await connect(prisma);
-        const {userId, title, priority, limitDate} = await req.json();
+        const { userId, title, priority, limitDate } = await req.json();
 
         // タスク名とユーザーIDは必須
         if (!title || !userId) {
@@ -31,10 +32,11 @@ export const POST = async (req: Request) => {
         }
 
         const createTask = await prisma.task.create({
-            data: {userId, title, priority, limitDate},
+            data: { userId, title, priority, limitDate },
         })
         return NextResponse.json(createTask)
     } catch (error) {
+        console.error(error);
         return errorResponse(500)
     } finally {
         await prisma.$disconnect();

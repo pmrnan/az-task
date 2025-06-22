@@ -5,6 +5,7 @@ export const connect = async (prisma: PrismaClient) => {
         // Prismaでデータベースに接続
         prisma.$connect();
     } catch (error) {
+        console.error(error);
         return Error('DB接続に失敗しました。')
     }
 }

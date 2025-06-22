@@ -1,6 +1,5 @@
 import {
   FormControl,
-  FormField,
   FormItem,
   FormLabel,
   FormMessage,
@@ -13,12 +12,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Option } from "@/types/Form";
-import { UseFormReturn } from "react-hook-form";
 
 type Props = {
-  name: string;
   title: string;
-  form: UseFormReturn<any>;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  value: any;
+  onChange: (...event: any[]) => void;
+  /* eslint-enable @typescript-eslint/no-explicit-any */
   options: Option[];
   placeholder?: string;
   isRequired?: boolean;
@@ -31,39 +31,31 @@ export const AppSelectForm = ({
 }: Props) => {
   return (
     <>
-      <FormField
-        control={props.form.control}
-        name={props.name}
-        render={({ field }) => (
-          <FormItem className="gap-1">
-            <FormLabel className="form-title">
-              {props.title}
-              {isRequired && <span className="text-red">*</span>}
-            </FormLabel>
-            <FormControl>
-              <Select
-                value={field.value ?? "none"}
-                onValueChange={(val) =>
-                  field.onChange(val === "none" ? null : val)
-                }
-              >
-                <SelectTrigger className="w-[100%] cursor-pointer hover:bg-accent">
-                  <SelectValue placeholder={placeholder} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">-- 未選択 --</SelectItem>
-                  {props.options.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <FormItem className="gap-1">
+        <FormLabel className="form-title">
+          {props.title}
+          {isRequired && <span className="text-red">*</span>}
+        </FormLabel>
+        <FormControl>
+          <Select
+            value={props.value ?? "none"}
+            onValueChange={(val) => props.onChange(val === "none" ? null : val)}
+          >
+            <SelectTrigger className="w-[100%] cursor-pointer hover:bg-accent">
+              <SelectValue placeholder={placeholder} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="none">-- 未選択 --</SelectItem>
+              {props.options.map((item) => (
+                <SelectItem key={item.value} value={item.value}>
+                  {item.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </FormControl>
+        <FormMessage />
+      </FormItem>
     </>
   );
 };

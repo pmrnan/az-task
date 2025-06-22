@@ -15,11 +15,11 @@ export const useTaskFieldList = () => {
     // グローバルstate
     const { state, dispatch } = useContext(DataStoreContext);
     // Drag中のタスク(レンダリングを抑えるためにuseRefで状態管理)
-    const draggingTaskRef = useRef<{task: Task; fromStatus: string} | null>(null);
+    const draggingTaskRef = useRef<{ task: Task; fromStatus: string } | null>(null);
 
     // Drag開始時
     const onDragStart = (task: Task, fromStatus: string): void => {
-        draggingTaskRef.current = {task, fromStatus}
+        draggingTaskRef.current = { task, fromStatus }
     }
 
     // Drop時
@@ -28,7 +28,7 @@ export const useTaskFieldList = () => {
         // 対象がない場合return
         if (!dragging) return;
 
-        const {task, fromStatus} = dragging;
+        const { task, fromStatus } = dragging;
         // 同じ場所ならreturn
         if (fromStatus === toStatus) return;
 
@@ -42,33 +42,8 @@ export const useTaskFieldList = () => {
         e.preventDefault();
     }
 
-    // タスク一覧取得
-    const getTasks = async() => {
-        try {
-            dispatch({ type: CONTEXT_FETCH_START });
-
-            // タスク一覧取得API呼び出し
-            const res = await fetch(URL.task);
-
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-
-            const data = await res.json();
-            if(data.tasks) {
-                dispatch({ type: CONTEXT_NOT_STARTED_TASKS, data: data.tasks.filter((task: Task) => {return task.status === STATUS_NOT_STARTED}) });
-                dispatch({ type: CONTEXT_DOING_TASKS, data: data.tasks.filter((task: Task) => {return task.status === STATUS_DOING}) });
-                dispatch({ type: CONTEXT_DONE_TASKS, data: data.tasks.filter((task: Task) => {return task.status === STATUS_DONE}) });
-            }
-        } catch (error) {
-            console.error("Failed to fetch tasks:", error);
-        } finally {
-            dispatch({ type: CONTEXT_FETCH_END });
-        }
-    }
-
     // タスク更新
-    const patchTask = async(task: Task, fromStatus: string, toStatus: string) => {
+    const patchTask = async (task: Task, fromStatus: string, toStatus: string) => {
         try {
             dispatch({ type: CONTEXT_FETCH_START });
 
@@ -133,8 +108,31 @@ export const useTaskFieldList = () => {
 
     useEffect(() => {
         // タスク一覧取得
+        const getTasks = async () => {
+            try {
+                dispatch({ type: CONTEXT_FETCH_START });
+
+                // タスク一覧取得API呼び出し
+                const res = await fetch(URL.task);
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                if (data.tasks) {
+                    dispatch({ type: CONTEXT_NOT_STARTED_TASKS, data: data.tasks.filter((task: Task) => { return task.status === STATUS_NOT_STARTED }) });
+                    dispatch({ type: CONTEXT_DOING_TASKS, data: data.tasks.filter((task: Task) => { return task.status === STATUS_DOING }) });
+                    dispatch({ type: CONTEXT_DONE_TASKS, data: data.tasks.filter((task: Task) => { return task.status === STATUS_DONE }) });
+                }
+            } catch (error) {
+                console.error("Failed to fetch tasks:", error);
+            } finally {
+                dispatch({ type: CONTEXT_FETCH_END });
+            }
+        }
         getTasks();
-    }, []);
+    }, [dispatch]);
 
     return {
         notStartedTasks: state.notStartedTasks,

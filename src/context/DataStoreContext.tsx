@@ -18,6 +18,7 @@ type DataStore = {
 
 type ReducerAction = {
   type: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
 };
 
@@ -71,6 +72,7 @@ const initialState: DataStore = {
 
 export const DataStoreContext = createContext({} as DataStoreContext);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const DataStoreContextProvider = (props: any): JSX.Element => {
   const [state, dispatch] = useReducer(reducerFunc, initialState);
   return (

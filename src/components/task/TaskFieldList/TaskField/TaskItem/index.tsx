@@ -1,3 +1,4 @@
+import { Key } from "react";
 import { format } from "date-fns";
 import { DeleteWithConfirm } from "@/components/shared/DeleteWithConfirm";
 import {
@@ -13,6 +14,7 @@ import { Task } from "@/types/Task";
 import { getStatusName, getPriorityName } from "@/constansts/task";
 
 type Props = {
+  key: Key;
   task: Task;
   fromStatus: string;
   onDragStart: (task: Task, fromStatus: string) => void;
@@ -25,7 +27,7 @@ export const TaskItem = ({ ...props }: Props) => {
     <Dialog>
       <DialogTrigger asChild>
         <div
-          key={props.task.id}
+          key={props.key}
           draggable={true}
           onDragStart={() => props.onDragStart(props.task, props.fromStatus)}
           className="block max-w-sm py-1 mb-2 cursor-move bg-gray-100 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600"

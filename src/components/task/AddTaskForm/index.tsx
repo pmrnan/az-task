@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
+import { Form, FormField } from "@/components/ui/form";
 import { useAddTaskForm } from "@/hooks/useForm/useAddTaskForm";
 import { AppDateForm } from "@/components/shared/AppDateForm";
 import { AppSelectForm } from "@/components/shared/AppSelectForm";
@@ -17,19 +17,47 @@ export const AddTaskForm = () => {
       <form onSubmit={onSubmit} className="space-y-8">
         <div className="my-4 mx-16 grid grid-cols-[15fr_1fr] items-center ">
           <div className="grid grid-cols-[2fr_1fr_1fr] gap-4">
-            <AppTextForm
+            <FormField
+              control={form.control}
               name="title"
-              title="タスク名"
-              form={form}
-              isRequired={true}
+              render={({ field }) => (
+                <>
+                  <AppTextForm
+                    title="タスク名"
+                    value={field.value}
+                    onChange={field.onChange}
+                    isRequired={true}
+                  />
+                </>
+              )}
             />
-            <AppSelectForm
+            <FormField
+              control={form.control}
               name="priority"
-              title="優先度"
-              form={form}
-              options={PRIORITY_OPTION}
+              render={({ field }) => (
+                <>
+                  <AppSelectForm
+                    title="優先度"
+                    value={field.value}
+                    onChange={field.onChange}
+                    options={PRIORITY_OPTION}
+                  />
+                </>
+              )}
             />
-            <AppDateForm name="limitDate" title="期日" form={form} />
+            <FormField
+              control={form.control}
+              name="limitDate"
+              render={({ field }) => (
+                <>
+                  <AppDateForm
+                    title="期日"
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                </>
+              )}
+            />
           </div>
           <div className="ml-auto">
             <Button type="submit" className="cursor-pointer submit-button">

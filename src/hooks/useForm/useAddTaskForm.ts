@@ -5,9 +5,9 @@ import { z } from "zod";
 import { DataStoreContext } from "@/context/DataStoreContext";
 import { URL } from "@/constansts/api"
 import {
-    CONTEXT_FETCH_START,
-    CONTEXT_FETCH_END,
-    CONTEXT_NOT_STARTED_TASKS,
+  CONTEXT_FETCH_START,
+  CONTEXT_FETCH_END,
+  CONTEXT_NOT_STARTED_TASKS,
 } from "@/constansts/context";
 import { PRIORITY_HIGH, PRIORITY_MIDDLE, PRIORITY_LOW } from "@/constansts/task"
 import { Task } from "@/types/Task";
@@ -29,27 +29,27 @@ const formSchema = z.object({
     .string()
     .min(
       TITLE_MIN_LENGTH,
-      {message: "必須です"}
+      { message: "必須です" }
     )
     .max(
       TITLE_MAX_LENGTH,
-      {message: `${TITLE_MAX_LENGTH}文字以内で入力してください`}
+      { message: `${TITLE_MAX_LENGTH}文字以内で入力してください` }
     ),
   priority: z
     .enum(
       PriorityEnum,
-      {invalid_type_error: "値が不正です"}
+      { invalid_type_error: "値が不正です" }
     )
     .nullable()
     .optional(),
   limitDate: z
     .date(
-      {invalid_type_error: "有効な日付を選択してください"}
+      { invalid_type_error: "有効な日付を選択してください" }
     )
     .nullable()
     .optional(),
 });
-type FormSchema = z.infer<typeof formSchema> 
+type FormSchema = z.infer<typeof formSchema>
 
 export const useAddTaskForm = () => {
   // グローバルstate
@@ -72,44 +72,44 @@ export const useAddTaskForm = () => {
   }
 
   // タスク追加
-  const postTask = async(formData: FormSchema) => {
+  const postTask = async (formData: FormSchema) => {
     try {
-        dispatch({ type: CONTEXT_FETCH_START });
+      dispatch({ type: CONTEXT_FETCH_START });
 
-        // タスク追加API呼び出し
-        const res = await fetch(
-            URL.task,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    userId: 1, // todo: ログイン機能実装後更新
-                    title: formData.title,
-                    priority: formData.priority,
-                    limitDate: formData.limitDate
-                })
-            }
-        );
-
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
+      // タスク追加API呼び出し
+      const res = await fetch(
+        URL.task,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            userId: 1, // todo: ログイン機能実装後更新
+            title: formData.title,
+            priority: formData.priority,
+            limitDate: formData.limitDate
+          })
         }
+      );
 
-        const data = await res.json();
-        const addTask = (list: Task[]) => [...list, data]
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
 
-        // タスク一覧を更新
-        dispatch({ type: CONTEXT_NOT_STARTED_TASKS, data: addTask(state.notStartedTasks) });
+      const data = await res.json();
+      const addTask = (list: Task[]) => [...list, data]
 
-        // Formをクリア
-        form.reset();
+      // タスク一覧を更新
+      dispatch({ type: CONTEXT_NOT_STARTED_TASKS, data: addTask(state.notStartedTasks) });
+
+      // Formをクリア
+      form.reset();
 
     } catch (error) {
-        console.error("Failed to fetch tasks:", error);
+      console.error("Failed to fetch tasks:", error);
     } finally {
-        dispatch({ type: CONTEXT_FETCH_END });
+      dispatch({ type: CONTEXT_FETCH_END });
     }
   }
 

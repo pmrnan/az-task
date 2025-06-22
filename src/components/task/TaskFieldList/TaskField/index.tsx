@@ -27,6 +27,7 @@ export const TaskField = ({ ...props }: Props) => {
           props.tasks.map((task) => {
             return (
               <TaskItem
+                key={task.id}
                 task={task}
                 fromStatus={props.fieldStatusOption.key}
                 onDragStart={props.onDragStart}

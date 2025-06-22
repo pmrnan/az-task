@@ -1,9 +1,11 @@
 import type { Config } from "tailwindcss";
 
+/* eslint-disable @typescript-eslint/no-require-imports */
 const {
   iconsPlugin,
   getIconCollections,
 } = require("@egoist/tailwindcss-icons");
+/* eslint-enable @typescript-eslint/no-require-imports */
 
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],

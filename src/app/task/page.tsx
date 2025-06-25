@@ -1,14 +1,14 @@
 "use client";
 
 import { DataStoreContextProvider } from "@/context/DataStoreContext";
-import { AddTaskForm } from "@/components/task/AddTaskForm";
+import { AddTask } from "@/components/task/AddTask";
 import { TaskFieldList } from "@/components/task/TaskFieldList";
 
 export default function TopPage() {
   return (
     <>
       <DataStoreContextProvider>
-        <AddTaskForm />
+        <AddTask />
         <TaskFieldList />
       </DataStoreContextProvider>
     </>

@@ -1,20 +1,49 @@
 "use client";
 
+import {
+  FieldValues,
+  SubmitErrorHandler,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormField } from "@/components/ui/form";
-import { useAddTaskForm } from "@/hooks/useForm/useAddTaskForm";
 import { AppDateForm } from "@/components/shared/AppDateForm";
 import { AppSelectForm } from "@/components/shared/AppSelectForm";
 import { AppTextForm } from "@/components/shared/AppTextForm";
 import { PRIORITY_OPTION } from "@/constansts/task";
+import { addTaskInputSchema, AddTaskInputSchema } from "@/lib/schema/Task";
 
-export const AddTaskForm = () => {
-  // フォーム定義呼び出し
-  const { form, onSubmit } = useAddTaskForm();
+type Props<T extends FieldValues = AddTaskInputSchema> = {
+  onValid: SubmitHandler<T>;
+  onInValid?: SubmitErrorHandler<T>;
+};
+
+export const AddTaskForm = ({ ...props }: Props) => {
+  // RHFの設定
+  const form = useForm<AddTaskInputSchema>({
+    defaultValues: {
+      title: "",
+      priority: null,
+      limitDate: null,
+    },
+    mode: "onSubmit",
+    resolver: zodResolver(addTaskInputSchema),
+  });
+
+  // onValidをラップして、送信後にreset()を実行
+  const handleValid: SubmitHandler<AddTaskInputSchema> = async (data) => {
+    await props.onValid(data);
+    form.reset();
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(handleValid, props.onInValid)}
+        className="space-y-8"
+      >
         <div className="my-4 mx-16 grid grid-cols-[15fr_1fr] items-center ">
           <div className="grid grid-cols-[2fr_1fr_1fr] gap-4">
             <FormField

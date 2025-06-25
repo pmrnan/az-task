@@ -20,15 +20,10 @@ type Props = {
   onChange: (...event: any[]) => void;
   /* eslint-enable @typescript-eslint/no-explicit-any */
   options: Option[];
-  placeholder?: string;
   isRequired?: boolean;
 };
 
-export const AppSelectForm = ({
-  placeholder = "選択してください",
-  isRequired = false,
-  ...props
-}: Props) => {
+export const AppSelectForm = ({ isRequired = false, ...props }: Props) => {
   return (
     <>
       <FormItem className="gap-1">
@@ -42,7 +37,7 @@ export const AppSelectForm = ({
             onValueChange={(val) => props.onChange(val === "none" ? null : val)}
           >
             <SelectTrigger className="w-[100%] cursor-pointer hover:bg-accent">
-              <SelectValue placeholder={placeholder} />
+              <SelectValue />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="none">-- 未選択 --</SelectItem>

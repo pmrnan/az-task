@@ -11,7 +11,7 @@ describe("DeleteWithConfirm", () => {
         confirmMessage="本当に削除しますか？"
         deleteButton={<button>削除</button>}
         onDelete={onDeleteMock}
-      />
+      />,
     );
 
     // 削除ボタンを押下する
@@ -36,7 +36,7 @@ describe("DeleteWithConfirm", () => {
         confirmMessage="本当に削除しますか？"
         deleteButton={<button>削除</button>}
         onDelete={onDeleteMock}
-      />
+      />,
     );
 
     // 削除ボタンを押下する
@@ -64,7 +64,7 @@ describe("DeleteWithConfirm", () => {
         confirmMessage="本当に削除しますか？"
         deleteButton={<button>削除</button>}
         onDelete={onDeleteMock}
-      />
+      />,
     );
 
     // 削除ボタンを押下する
@@ -81,7 +81,7 @@ describe("DeleteWithConfirm", () => {
     // キャンセル後、モーダルが非表示になること
     await waitFor(() => {
       expect(
-        screen.queryByText("本当に削除しますか？")
+        screen.queryByText("本当に削除しますか？"),
       ).not.toBeInTheDocument();
     });
 

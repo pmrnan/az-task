@@ -48,7 +48,7 @@ describe("AddTaskForm", () => {
     // タスク名入力
     await userEvent.type(
       screen.getByLabelText(/タスク名/i),
-      "012345678901234567890123456789012345678901234567890"
+      "012345678901234567890123456789012345678901234567890",
     );
 
     fireEvent.click(screen.getByRole("button", { name: "追加" }));
@@ -57,7 +57,7 @@ describe("AddTaskForm", () => {
       expect(onValid).not.toHaveBeenCalled();
       expect(onInValid).toHaveBeenCalled();
       expect(
-        screen.getByText("タスク名は50文字以内で入力してください")
+        screen.getByText("タスク名は50文字以内で入力してください"),
       ).toBeInTheDocument();
     });
   });
@@ -78,7 +78,7 @@ describe("AddTaskForm", () => {
     await userEvent.click(
       screen.getByRole("button", {
         name: /日付を選択してください/i,
-      })
+      }),
     );
     const dayCell = document.querySelector('[data-day="2025-07-02"]');
     const button = dayCell?.querySelector("button");
@@ -93,7 +93,7 @@ describe("AddTaskForm", () => {
           title: "テストタスク",
           priority: "HIGH",
           limitDate: new Date("2025-07-02T00:00:00"),
-        })
+        }),
       );
     });
   });

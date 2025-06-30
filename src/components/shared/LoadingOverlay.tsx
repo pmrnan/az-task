@@ -10,7 +10,7 @@ export const LoadingOverlay = ({ className }: Props) => {
     <div
       className={cn(
         "fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-800/70 backdrop-blur-sm",
-        className
+        className,
       )}
     >
       <Loader2

@@ -36,7 +36,7 @@ describe("TaskField", () => {
         onDragStart={mockOnDragStart}
         onDrop={mockOnDrop}
         allowDrop={mockAllowDrop}
-      />
+      />,
     );
 
     // ステータスバッジが表示されること
@@ -53,7 +53,7 @@ describe("TaskField", () => {
         onDragStart={mockOnDragStart}
         onDrop={mockOnDrop}
         allowDrop={mockAllowDrop}
-      />
+      />,
     );
 
     // Drop 実行
@@ -72,7 +72,7 @@ describe("TaskField", () => {
         onDragStart={mockOnDragStart}
         onDrop={mockOnDrop}
         allowDrop={mockAllowDrop}
-      />
+      />,
     );
 
     // DragOver 実行

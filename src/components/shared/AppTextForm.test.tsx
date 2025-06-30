@@ -40,7 +40,7 @@ describe("AppTextForm", () => {
     expect(screen.getByPlaceholderText("入力してください")).toBeInTheDocument();
     // 必須マーク（*）
     expect(
-      screen.queryByText((text) => text.includes("*"))
+      screen.queryByText((text) => text.includes("*")),
     ).not.toBeInTheDocument();
   });
 

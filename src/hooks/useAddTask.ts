@@ -44,7 +44,6 @@ export const useAddTask = () => {
         type: CONTEXT_NOT_STARTED_TASKS,
         data: addTask(state.notStartedTasks),
       });
-
     } catch (error) {
       console.error("Failed to fetch tasks:", error);
     } finally {

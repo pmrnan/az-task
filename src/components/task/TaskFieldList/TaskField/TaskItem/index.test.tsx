@@ -39,7 +39,7 @@ describe("TaskItem", () => {
         task={mockTask}
         fromStatus={Status.DONE}
         onDragStart={jest.fn()}
-      />
+      />,
     );
 
     // タスク名が表示されていること
@@ -61,14 +61,14 @@ describe("TaskItem", () => {
         task={mockTask}
         fromStatus={Status.NOT_STARTED}
         onDragStart={jest.fn()}
-      />
+      />,
     );
 
     // モーダルを開く
     const taskTitles = container.querySelectorAll("h1.border-b-1");
 
     const target = Array.from(taskTitles).find(
-      (el) => el.textContent === "テストタスク"
+      (el) => el.textContent === "テストタスク",
     );
     expect(target).toBeInTheDocument();
     userEvent.click(target!);
@@ -92,7 +92,7 @@ describe("TaskItem", () => {
         task={mockTask}
         fromStatus={Status.NOT_STARTED}
         onDragStart={jest.fn()}
-      />
+      />,
     );
     const user = userEvent.setup();
 
@@ -119,7 +119,7 @@ describe("TaskItem", () => {
         task={mockTask}
         fromStatus={Status.NOT_STARTED}
         onDragStart={jest.fn()}
-      />
+      />,
     );
     const user = userEvent.setup();
 

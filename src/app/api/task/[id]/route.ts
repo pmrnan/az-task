@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 // タスク更新
 export const PATCH = async (
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) => {
   try {
     await connect(prisma);
@@ -37,7 +37,7 @@ export const PATCH = async (
 // タスク削除
 export const DELETE = async (
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) => {
   try {
     await connect(prisma);

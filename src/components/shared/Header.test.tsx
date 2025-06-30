@@ -11,7 +11,7 @@ describe("Header", () => {
 
     // 見出しテキストが表示されること
     expect(
-      screen.getByRole("heading", { level: 1, name: "Az Task" })
+      screen.getByRole("heading", { level: 1, name: "Az Task" }),
     ).toBeInTheDocument();
 
     // 画像が存在すること（alt 属性で判定）

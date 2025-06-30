@@ -44,7 +44,7 @@ describe("AddTask", () => {
     await userEvent.click(
       screen.getByRole("button", {
         name: /日付を選択してください/i,
-      })
+      }),
     );
     const dayCell = document.querySelector('[data-day="2025-07-02"]');
     const button = dayCell?.querySelector("button");
@@ -61,7 +61,7 @@ describe("AddTask", () => {
           title: "テストタスク",
           priority: "HIGH",
           limitDate: new Date("2025-07-02T00:00:00"),
-        })
+        }),
       );
     });
   });

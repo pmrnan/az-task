@@ -44,14 +44,14 @@ describe("AppSelectForm", () => {
     expect(screen.getByText("-- 未選択 --")).toBeInTheDocument();
     // 必須マーク（*）
     expect(
-      screen.queryByText((text) => text.includes("*"))
+      screen.queryByText((text) => text.includes("*")),
     ).not.toBeInTheDocument();
   });
 
   it("選択値指定", () => {
     render(<Wrapper value="apple" />);
     expect(
-      screen.queryByText((text) => text.includes("りんご"))
+      screen.queryByText((text) => text.includes("りんご")),
     ).toBeInTheDocument();
   });
 

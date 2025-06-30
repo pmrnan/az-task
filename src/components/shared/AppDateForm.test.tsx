@@ -42,7 +42,7 @@ describe("AppDateForm", () => {
     expect(screen.getByText("日付を選択してください")).toBeInTheDocument();
     // 必須マーク（*）
     expect(
-      screen.queryByText((text) => text.includes("*"))
+      screen.queryByText((text) => text.includes("*")),
     ).not.toBeInTheDocument();
   });
 
@@ -69,7 +69,7 @@ describe("AppDateForm", () => {
 
     // 日付表示ボタンをクリックしてポップオーバーを開く
     await userEvent.click(
-      screen.getByRole("button", { name: /2024\/05\/01/i })
+      screen.getByRole("button", { name: /2024\/05\/01/i }),
     );
 
     // 日付をクリアボタンを押す

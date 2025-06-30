@@ -6,9 +6,6 @@
 # next.js
 /.next/
 
-# Prisma
-/src/generated
-
 # vercel
 .vercel
 

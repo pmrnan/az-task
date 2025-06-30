@@ -8,12 +8,12 @@ const prisma = new PrismaClient();
 // タスク更新
 export const PATCH = async (
   req: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> }
 ) => {
   try {
     await connect(prisma);
     const { status } = await req.json();
-    const id = Number(params.id);
+    const id = Number((await params).id);
 
     if (!status) {
       return errorResponse(400);
@@ -37,11 +37,11 @@ export const PATCH = async (
 // タスク削除
 export const DELETE = async (
   req: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> }
 ) => {
   try {
     await connect(prisma);
-    const id = Number(params.id);
+    const id = Number((await params).id);
 
     const deleteTask = await prisma.task.delete({
       where: { id },

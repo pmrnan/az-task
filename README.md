@@ -3,10 +3,9 @@
 **以下のURLにアクセスしてください**
 
 ```
-https://az-task-zeta.vercel.app/task
+https://az-task-zeta.vercel.app
 ```
 
-<br>
 <br>
 
 # 💻 開発環境
@@ -57,7 +56,6 @@ npx prisma migrate dev
 ```
 
 <br>
-<br>
 
 # 🚀 アプリケーション構成（Next.js × Supabase × TypeScript）
 
@@ -65,19 +63,19 @@ AzTask は、開発効率・保守性・パフォーマンスを重視した、�
 
 ## 🧱 使用技術
 
-| 技術                  | 役割                                          |
-| --------------------- | --------------------------------------------- |
-| Next.js               | フロントエンド + API サーバー                 |
-| TypeScript            | 静的型付き JavaScript                         |
-| Prisma                | 型安全な ORM（PostgreSQL 用）                 |
-| Supabase              | BaaS（認証、DB、ストレージ、リアルタイム）    |
-| React Hook Form (RHF) | 高速で軽量なフォームライブラリ                |
-| Zod                   | スキーマバリデーション                        |
-| Tailwind CSS          | ユーティリティファーストな CSS フレームワーク |
-| shadcn/ui             | Tailwind ベースの UI コンポーネント集         |
-| Vercel                | デプロイ＆CI/CD プラットフォーム              |
-| jest                  | todo                                          |
-| playwright            | todo                                          |
+| 技術                  | 役割                                               |
+| --------------------- | -------------------------------------------------- |
+| Next.js               | フロントエンド + API サーバー                      |
+| TypeScript            | 静的型付き JavaScript                              |
+| Prisma                | 型安全な ORM（PostgreSQL 用）                      |
+| Supabase              | BaaS（認証、DB、ストレージ、リアルタイム）         |
+| React Hook Form (RHF) | 高速で軽量なフォームライブラリ                     |
+| Zod                   | スキーマバリデーション                             |
+| Tailwind CSS          | ユーティリティファーストな CSS フレームワーク      |
+| shadcn/ui             | Tailwind ベースの UI コンポーネント集              |
+| Vercel                | デプロイ＆CI/CD プラットフォーム                   |
+| jest                  | ユニットテスト・コンポーネントテストフレームワーク |
+| playwright            | E2E（エンドツーエンド）テストフレームワーク        |
 
 ---
 
@@ -117,7 +115,6 @@ AzTask は、開発効率・保守性・パフォーマンスを重視した、�
 - GitHubと連携し、プッシュするだけで自動ビルド＆デプロイが可能
 - グローバル CDN で高速配信が可能
 
-<br>
 <br>
 
 # 📚 コーディング規約

@@ -12,8 +12,10 @@ const Wrapper = ({
   placeholder,
   isRequired,
 }: {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   value: any;
   onChange?: (...event: any[]) => void;
+  /* eslint-enable @typescript-eslint/no-explicit-any */
   placeholder?: string;
   isRequired?: boolean;
 }) => {

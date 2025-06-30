@@ -6,8 +6,11 @@ import { Status } from "@/generated/prisma";
 jest.mock("@/hooks/useTaskFieldList", () => ({
   useTaskFieldList: jest.fn(),
 }));
+
+/* eslint-disable @typescript-eslint/no-require-imports */
 const mockUseTaskFieldList =
   require("@/hooks/useTaskFieldList").useTaskFieldList;
+/* eslint-enable @typescript-eslint/no-require-imports */
 
 describe("TaskFieldList", () => {
   // テストデータ
